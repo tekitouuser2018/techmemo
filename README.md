@@ -156,7 +156,7 @@ https://qiita.com/ymasaoka/items/3db3f44990911a181ffc<br>
 	- シンプルで早い
 	- 学習コスト低い
 	- フルカスタマイズ可能
-- Heteor.js
+- Meteor.js
 	- より大きなプロジェクトを管理するための能力がある
 	- 豊富で整理されたドキュメントコミュニティ
 	- Facebook GraphQLデータスタックを利用している
