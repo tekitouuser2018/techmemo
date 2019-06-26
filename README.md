@@ -40,7 +40,7 @@ func initAPI(g *gin.Engine){
 ----
 ### memo
 
-・DB＝Excelデータ→スプレッドシート→KVS
+- DB＝Excelデータ→スプレッドシート→KVS<br>
 ※データ取り扱いの処理をいちいち作らなければならない
 
 <strong>・DBや外部ストレージなどに依存する機能の単体テストに関しては「モッキング」と「ローカル環境上に構築したダミーの外部サービスを使用する」方式の２種類がある。<font color=red>Dockerにより後者の方式のメリットが大きくなっている。(AWSの場合、各種サービスをエミュレート可能な`localstack`というDockerイメージが存在しますし、CircleCI等のCIサービスもDockerに対応しているので、ローカル上でもCI環境上でも同じ方式で単体テストが行える状況になっています)</font></strong>
@@ -57,15 +57,15 @@ func initAPI(g *gin.Engine){
 
 
 <strong><font color=green>
-・GraphQLのメリットを一言で言えば「クライアント＝サーバー間での複雑なトランザクション処理の全てをGraphQLが吸収してくれる」
-・エンドポイントは一つ
-・RESTの代替
-・GraphQLの作者[Lee Byron](https://twitter.com/leeb)氏も言うように「なんでもできるGraphQLだが、GraphQLはできるだけ薄く保つのがいい」。GraphQLの責務と役割はquery（RESTfulのGET）とmutation（POSTもしくはPATCH）だけであって、それ以外は無い。</font></strong>
+- GraphQLのメリットを一言で言えば「クライアント＝サーバー間での複雑なトランザクション処理の全てをGraphQLが吸収してくれる」
+- エンドポイントは一つ
+- RESTの代替
+- GraphQLの作者[Lee Byron](https://twitter.com/leeb)氏も言うように「なんでもできるGraphQLだが、GraphQLはできるだけ薄く保つのがいい」。GraphQLの責務と役割はquery（RESTfulのGET）とmutation（POSTもしくはPATCH）だけであって、それ以外は無い。</font></strong>
 
 <strong>WebSocket</strong>
-・WebSocketはクライアントとサーバー間でTCPコネクションを張りっぱなしにして通信を行うため、Blocking I/OをもつWebサーバとは相性が悪い。
-・Node.jsが最近ではよく使われている。
-・nginxもWebSocketに対応した。
+- WebSocketはクライアントとサーバー間でTCPコネクションを張りっぱなしにして通信を行うため、Blocking I/OをもつWebサーバとは相性が悪い。
+- Node.jsが最近ではよく使われている。
+- nginxもWebSocketに対応した。
 
 
 ----
@@ -115,37 +115,41 @@ func initAPI(g *gin.Engine){
 ### Front
 
 「サーバーサイドレンダリング（SSR）」
-・画面表示の高速化
-・CPU負荷が高くなる→キャッシュやATFレンダリングなど対策が必要
-・SEO対策に有効-GooglebotがJavascriptを実行できるため
-・変更が多いページ、動的なページには使えない
+- 画面表示の高速化
+- CPU負荷が高くなる→キャッシュやATFレンダリングなど対策が必要
+- SEO対策に有効-GooglebotがJavascriptを実行できるため
+- 変更が多いページ、動的なページには使えない
 	
 <strong><font color=red>
 Time to Interactiveまでの時間も重要
-・Code SplittingしてJS自体を軽くする
-・HTTP/2のPUSHを使って次のリソースを事前キャッシュしておく
-・DBクエリチューニング+ネットワーク改善
-・CSS調整
-・画像の遅延読み込み
-・JSの遅延ロード
-・HTTP/2やResource Hintsによるロード改善
+- Code SplittingしてJS自体を軽くする
+- HTTP/2のPUSHを使って次のリソースを事前キャッシュしておく
+- DBクエリチューニング+ネットワーク改善
+- CSS調整
+- 画像の遅延読み込み
+- JSの遅延ロード
+- HTTP/2やResource Hintsによるロード改善
 
 </font></strong>
 
 ----- 
 <strong>Cloud Function = AWS Lambda</strong>
-・Javascriptの単純な関数をクラウド上で実行する
-・イベントベースで発火。Storage or Pub/SubまたはHTTPリクエスト
-・ランタイムとしてNode.jsを使用。自動的にスケール
-・
+- Javascriptの単純な関数をクラウド上で実行する
+- イベントベースで発火。Storage or Pub/SubまたはHTTPリクエスト
+- ランタイムとしてNode.jsを使用。自動的にスケール
 
 -----
-<strong>Vue</strong>
-・cli - プロジェクト作成
-・Webpack - パッケージ管理？
-・vuex - State管理
+<strong>Vue</strong><br>
+- cli - プロジェクト作成
+- Webpack - パッケージ管理？
+- vuex - State管理
 
-・コンポーネント毎に分けて管理
-・components配下に部品を分けて格納
+- コンポーネント毎に分けて管理
+- components配下に部品を分けて格納
+
+-----
+<strong>Node.js</strong><br>
+https://qiita.com/ymasaoka/items/3db3f44990911a181ffc<br>
+・node.jsは、ブラウザの外部でJavaScriptを実行する、オープンソース化つクロスプラットフォームのJavaScriptランタイム環境。
 
 -----
