@@ -150,7 +150,7 @@ Time to Interactiveまでの時間も重要
 -----
 <strong>Node.js</strong><br>
 https://qiita.com/ymasaoka/items/3db3f44990911a181ffc<br>
-- <strong>node.jsは、ブラウザの外部でJavaScriptを実行する、オープンソース化つクロスプラットフォームのJavaScriptランタイム環境。</strong>
+- <strong>node.jsは、ブラウザの外部でJavaScriptを実行する、オープンソースかつクロスプラットフォームのJavaScriptランタイム環境。</strong>
 <strong>フレームワーク</strong>
 - Express.js
 	- シンプルで早い
@@ -164,6 +164,6 @@ https://qiita.com/ymasaoka/items/3db3f44990911a181ffc<br>
 
 -----
 <strong>Webpack</strong><br>
-- WebAppに必要なリソースの依存関係を解決し、アセットを生成するビルドツール。JS,CoffeeScript,TypeScript,CSS,画像ファイルなどを扱うことができる。
+- <strong>WebAppに必要なリソースの依存関係を解決し、アセットを生成するビルドツール。JS,CoffeeScript,TypeScript,CSS,画像ファイルなどを扱うことができる。</strong>
 
 ----
