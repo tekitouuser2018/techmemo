@@ -11,6 +11,9 @@
 - Chech remote
     - git remote -v
     - git branch --remote  
+    
+- Change remote
+    - git remote set-url origin [new url]   
 
 - Staging
     - git add [file name]
