@@ -25,3 +25,4 @@ https://nekorails.hatenablog.com/entry/2018/10/12/101011
 <br>
 https://github.com/mperham/sidekiq
 <br>
+https://dev.classmethod.jp/articles/ruby-on-rails-sidekiq/
