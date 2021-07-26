@@ -5,14 +5,6 @@
 <br>
 https://github.com/heartcombo/devise
 
-
-### Send Grid
-メール送信機能
-<br>
-https://sendgrid.kke.co.jp/docs/Integrate/Code_Examples/v2_Mail/ruby.html
-<br>
-https://sendgrid.kke.co.jp/blog/?p=1140
-
 ### Puma
 webサーバー
 <br>
@@ -26,3 +18,14 @@ https://nekorails.hatenablog.com/entry/2018/10/12/101011
 https://github.com/mperham/sidekiq
 <br>
 https://dev.classmethod.jp/articles/ruby-on-rails-sidekiq/
+
+### Send Grid
+メール送信機能
+<br>
+https://sendgrid.kke.co.jp/docs/Integrate/Code_Examples/v2_Mail/ruby.html
+<br>
+https://sendgrid.kke.co.jp/blog/?p=1140
+
+### Action Mailer:Rails
+メール送信
+https://railsguides.jp/action_mailer_basics.html
