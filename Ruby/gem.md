@@ -28,4 +28,7 @@ https://sendgrid.kke.co.jp/blog/?p=1140
 
 ### Action Mailer:Rails
 メール送信
+<br>
 https://railsguides.jp/action_mailer_basics.html
+<br>
+https://qiita.com/fursich/items/bb75a06714bcad6a0afb
