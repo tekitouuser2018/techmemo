@@ -8,6 +8,10 @@
 https://www.postgresql.jp/document/7.2/user/mvcc.html<br/> 
 https://devcenter.heroku.com/ja/articles/postgresql-concurrency
 
+**MVCC の欠点**<br/>
+> 可視である行のセットはトランザクションごとに異なるため、Postgres では、古くなっている可能性があるレコードを維持する必要があります。UPDATE​ が実際には新しい行を作成するのはこれが理由であり、DELETE​ が実際には​行を削除せず、行を削除済みとマークして XID 値を適切に設定するだけである理由も同じです。トランザクションが完了すると、将来のどのトランザクションからも可視になる可能性がない行がデータベースに残ることになります。これらはデッドロー (dead row) と呼ばれます。MVCC に由来するもう 1 つの問題として、トランザクション ID はただ大きくなり続けることしかできません。32 ビットであり、サポートできるのは 約 40 億トランザクション “のみ"です。最大値に達すると、XID は最小値に戻って (ラップアラウンドして) ゼロから再開します。突然、すべての​行が将来のトランザクションにあるかのように見え、新しいトランザクションはそれらの行への可視性を得られなくなります。
+デッドローとトランザクション XID ラップアラウンドの問題はどちらも VACUUM​ によって解決されます。これは定期的に必要なメンテナンスですが、幸いにも Postgres には、設定可能な頻度で実行される auto_vacuum デーモンが付属しています。デプロイが異なれば必要なバキューム頻度も異なるため、これを注視することは重要です。VACUUM​ の実際の動作について詳しくは、Postgres のドキュメント​を参照してください。Heroku での処理​方法も参照してください。<br/>
+https://devcenter.heroku.com/ja/articles/postgresql-concurrency#disadvantages-of-mvcc
 
 トランザクション分離レベル<br/> 
 https://qiita.com/song_ss/items/38e514b05e9dabae3bdb<br/> 
