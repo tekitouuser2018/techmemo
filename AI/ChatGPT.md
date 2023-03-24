@@ -19,6 +19,17 @@
 - 様々なサービスに組み込まれているが、それぞれ学習データの利用についてなど利用規約を確認する必要がある。
 - 各企業内で使用上のルールを定める必要がある。（使用することのメリットが大きすぎるため、完全に使用不可にはしない方が良い）
 
+### API
+- 従量課金であり料金も安いが、設定の見直しが必要だったり日本語だとトークンの使用量が多いなど注意点がある。
+
+https://openai.com/blog/openai-api
+
+https://platform.openai.com/docs/api-reference
+
+https://auto-worker.com/blog/?p=7428
+
+https://auto-worker.com/blog/?p=7459
+
 ### プラグイン(α版)
 https://openai.com/blog/chatgpt-plugins
 
