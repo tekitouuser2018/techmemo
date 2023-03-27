@@ -37,7 +37,8 @@ https://www.techno-edge.net/article/2023/03/24/1056.html
 
 ### VSCode拡張機能(非公式)
 
-https://github.com/ai-genie/chatgpt-vscode　※下記の拡張機能が非推奨になりgenieの方で開発が続けられている様子https://github.com/gencay/vscode-chatgpt
+https://github.com/ai-genie/chatgpt-vscode
+<br>※下記の拡張機能が非推奨になりgenieの方で開発が続けられている様子https://github.com/gencay/vscode-chatgpt
 
 https://maasaablog.com/integrated-development-environment/visual-studio-code/chat-gpt/5960/
 
