@@ -41,3 +41,16 @@ https://github.com/ai-genie/chatgpt-vscode　※下記の拡張機能が非推�
 
 https://maasaablog.com/integrated-development-environment/visual-studio-code/chat-gpt/5960/
 
+
+### ツールの作成例など
+
+- ChatGPT Embeddings APIとFaissを組み合わせて企業専用の社内資料などの知識をもったチャットボットの構築<br>
+※文章を数百字のチャンクに分割したりしなければならないため、知識や工夫が必要
+
+https://qiita.com/sakasegawa/items/16714fa132e874cab069
+
+https://note.com/masa_kazama/n/n246df4af19f6
+
+https://book.st-hakky.com/docs/faiss-overview/
+
+https://platform.openai.com/docs/guides/embeddings/what-are-embeddings
