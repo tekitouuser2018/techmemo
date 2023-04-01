@@ -515,10 +515,8 @@ https://github.com/graphql/graphiql
 
 https://dev.classmethod.jp/articles/try-graphiql/
 
-https://www.apollographql.com/
+https://ivangoncharov.github.io/graphql-voyager/
 
-https://qiita.com/jintz/items/4ddc6bf4f95238eff5e9
-
-https://www.kabuku.co.jp/developers/develop-web-service-with-apollo-graphql
+https://github.com/IvanGoncharov/graphql-voyager
 
 ----
