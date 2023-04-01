@@ -333,5 +333,192 @@ components:
 
 ----
 
+以下は、上記のREST APIのコードをGraphQL APIに置き換えた例です。
 
+```ruby
+class UserApiSchema < GraphQL::Schema
+  mutation(Types::MutationType)
+  query(Types::QueryType)
+end
 
+module Types
+  class QueryType < Types::BaseObject
+    field :users, [UserType], null: false
+
+    def users
+      User.all
+    end
+  end
+
+  class MutationType < Types::BaseObject
+    field :create_user, UserType, null: false do
+      argument :name, String, required: true
+      argument :email, String, required: true
+    end
+
+    field :update_user, UserType, null: false do
+      argument :id, ID, required: true
+      argument :name, String, required: true
+      argument :email, String, required: true
+    end
+
+    field :delete_user, Boolean, null: false do
+      argument :id, ID, required: true
+    end
+
+    def create_user(name:, email:)
+      User.create(name: name, email: email)
+    end
+
+    def update_user(id:, name:, email:)
+      user = User.find(id)
+      user.update(name: name, email: email)
+      user
+    end
+
+    def delete_user(id:)
+      user = User.find(id)
+      user.destroy
+      true
+    end
+  end
+
+  class UserType < Types::BaseObject
+    field :id, ID, null: false
+    field :name, String, null: false
+    field :email, String, null: false
+  end
+end
+```
+
+GraphQL APIでは、REST APIとは異なり、エンドポイントに対して一つのURLを割り当て、クライアント側から必要なデータをリクエストする形式で通信します。また、クライアント側からリクエストされたデータのみを返すため、不必要な情報のやり取りが発生しません。これにより、通信の負荷が軽減され、APIのパフォーマンスが向上することが期待できます。
+
+----
+
+GraphQL APIの場合、通信の形式がREST APIと異なるため、テストの書き方も異なります。REST APIの場合、エンドポイントとHTTPメソッドでリクエスト内容を指定するのに対し、GraphQL APIではGraphQLのクエリをリクエストの本文に含める必要があります。
+
+以下はGraphQL APIに対するRSpecのテストの例です。
+
+```ruby
+RSpec.describe UserApiSchema do
+  describe "users query" do
+    let!(:users) { create_list(:user, 3) }
+    let(:query) do
+      <<~QUERY
+        query {
+          users {
+            id
+            name
+            email
+          }
+        }
+      QUERY
+    end
+
+    it "returns users" do
+      post "/graphql", params: { query: query }
+      expect(response).to have_http_status(:success)
+      json_response = JSON.parse(response.body)
+      expect(json_response["data"]["users"].size).to eq(users.size)
+    end
+  end
+
+  describe "createUser mutation" do
+    let(:mutation) do
+      <<~MUTATION
+        mutation($name: String!, $email: String!) {
+          createUser(input: {name: $name, email: $email}) {
+            user {
+              id
+              name
+              email
+            }
+          }
+        }
+      MUTATION
+    end
+
+    it "creates a user" do
+      post "/graphql", params: { query: mutation, variables: { name: "Alice", email: "alice@example.com" } }
+      expect(response).to have_http_status(:success)
+      json_response = JSON.parse(response.body)
+      expect(json_response["data"]["createUser"]["user"]["name"]).to eq("Alice")
+      expect(json_response["data"]["createUser"]["user"]["email"]).to eq("alice@example.com")
+    end
+  end
+
+  describe "updateUser mutation" do
+    let!(:user) { create(:user) }
+    let(:mutation) do
+      <<~MUTATION
+        mutation($id: ID!, $name: String!, $email: String!) {
+          updateUser(input: {id: $id, name: $name, email: $email}) {
+            user {
+              id
+              name
+              email
+            }
+          }
+        }
+      MUTATION
+    end
+
+    it "updates a user" do
+      post "/graphql", params: { query: mutation, variables: { id: user.id, name: "Bob", email: "bob@example.com" } }
+      expect(response).to have_http_status(:success)
+      json_response = JSON.parse(response.body)
+      expect(json_response["data"]["updateUser"]["user"]["name"]).to eq("Bob")
+      expect(json_response["data"]["updateUser"]["user"]["email"]).to eq("bob@example.com")
+    end
+  end
+
+  describe "deleteUser mutation" do
+    let!(:user) { create(:user) }
+    let(:mutation) do
+      <<~MUTATION
+        mutation($id: ID!) {
+          deleteUser(input: {id: $id})
+        }
+      MUTATION
+    end
+
+    it "deletes a user" do
+      post "/graphql", params: { query: mutation, variables: { id: user.id } }
+      expect(response).to have_http_status(:success)
+      json_response = JSON.parse(response.body)
+      expect(json_response["data"]["deleteUser"]).to eq(true)
+      expect(User.find_by(id: user.id)).to be_nil
+    end
+  end
+end
+```
+
+この例では、GraphQLのmutationをリクエストしています。また、リクエストのパラメータはvariablesに渡しています。そのため、requestテストの書き方も変わります。リクエストのレスポンスをパースしてJSONオブジェクトとして取得し、それを元にテストを行います。また、削除されたかどうかを確認するために、削除されたユーザーがDBから取得できないことを確認しています。
+
+----
+
+GraphQLの場合、OpenAPIでのドキュメントの書き方は異なります。GraphQL用のAPIドキュメントは、OpenAPIではなく、GraphQLのスキーマ言語であるSDL（Schema Definition Language）を使用して記述することが一般的です。
+
+例えば、GraphQLの公式ライブラリであるApolloには、SDLを使用してGraphQLのスキーマを記述することができるApollo Serverというものがあります。この場合、スキーマの情報は、GraphQL Playgroundと呼ばれるWebツールを使用して自動的にドキュメント化されます。
+
+また、GraphQLには、スキーマを可視化するためのツールが多数存在し、スキーマを可視化したドキュメントを作成することができます。例えば、GraphQLの公式ツールであるGraphiQLや、Voyagerというツールがあります。これらのツールを使用することで、スキーマに含まれるオブジェクト、フィールド、クエリ、ミューテーションなどの情報を可視化し、簡単にAPIドキュメントを作成することができます。
+
+GraphQLのスキーマを可視化するツールには、いくつかの選択肢がありますが、デファクトスタンダードとなっているのはGraphQLの公式ツールであるGraphiQLと、ApolloのVoyagerです。
+
+GraphiQLは、GraphQLのスキーマやクエリを可視化するためのWebベースのIDEで、GraphQLの公式ツールとして知られています。GraphiQLは、スキーマの検索やエラーのデバッグなど、豊富な開発機能を提供しています。
+
+一方、Voyagerは、Apolloによって開発されたGraphQLのスキーマ可視化ツールで、スキーマをグラフィカルに可視化することができます。Voyagerは、スキーマを直感的に理解しやすくするために、ノードとエッジのような視覚的な表現を使用しています。
+
+これらのツールはどちらも優れた機能を持っており、どちらを使用するかは個人の好みや、開発環境によって異なる場合があります。しかし、GraphQLのスキーマ可視化ツールとしては、GraphiQLとVoyagerが一般的に使用されていると言えます。
+
+https://github.com/graphql/graphiql
+
+https://dev.classmethod.jp/articles/try-graphiql/
+
+https://www.apollographql.com/
+
+https://qiita.com/jintz/items/4ddc6bf4f95238eff5e9
+
+https://www.kabuku.co.jp/developers/develop-web-service-with-apollo-graphql
+
+----
