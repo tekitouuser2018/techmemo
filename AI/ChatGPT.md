@@ -55,3 +55,26 @@ https://note.com/masa_kazama/n/n246df4af19f6
 https://book.st-hakky.com/docs/faiss-overview/
 
 https://platform.openai.com/docs/guides/embeddings/what-are-embeddings
+
+### ダジャレや韻を踏んだ表現について
+
+- 日本語の漢字やひらがなでそのまま韻を踏むよう指示を出すと何度か試しても思うような結果は得られない。また、「駄洒落」「ダジャレ」と指定すると存在しない言葉を出力することが多いため、ダジャレという言葉の意味をそのまま捉えて推論で回答している様子。（これは、辞書に存在する言葉に限定して出力するよう指定しても変わらなかった。）また、辞書内の単語はローマ字では持ち合わせていないためうまく韻を踏めないように感じる。
+- ジョークやギャグなどは著作権に関わる可能性があるため、既存のものを学習させてはいない様子（少なくとも日本語では）
+- 英単語の方が精度は高い。英単語で試すと、類似度判定でアルゴリズムを指定すると出力結果の趣が異なる。
+- 日本語の場合、ローマ字表記に変換した上で綴りの類似度についてアルゴリズムを指定すると類似判定などが可能だが、精度はそんなに高くない。
+<img width="1182" alt="スクリーンショット 2023-04-05 13 45 35" src="https://user-images.githubusercontent.com/38163743/230027464-fecb00ca-ff90-45c9-b069-d9c930c555cf.png">
+
+<img width="1181" alt="スクリーンショット 2023-04-05 17 33 20" src="https://user-images.githubusercontent.com/38163743/230027753-5e9f0656-01df-4e04-bd66-a243f8be2577.png">
+
+<img width="1179" alt="スクリーンショット 2023-04-05 17 33 41" src="https://user-images.githubusercontent.com/38163743/230027796-db76a7c2-1229-4dae-ab87-7962410f8c5d.png">
+
+<img width="1180" alt="スクリーンショット 2023-04-05 17 34 24" src="https://user-images.githubusercontent.com/38163743/230027827-3a4457a2-e7cf-4384-b570-c4bde78054fb.png">
+
+<img width="1180" alt="スクリーンショット 2023-04-05 17 43 46" src="https://user-images.githubusercontent.com/38163743/230029613-84e842da-7a61-4356-82cd-da41f8e4d78d.png">
+
+<img width="1180" alt="スクリーンショット 2023-04-05 17 44 01" src="https://user-images.githubusercontent.com/38163743/230029653-6673e911-96eb-4d5c-8b0c-c1dff560c895.png">
+
+<img width="1180" alt="スクリーンショット 2023-04-05 17 51 07" src="https://user-images.githubusercontent.com/38163743/230031364-addda859-c43d-48c2-8249-b738818afe66.png">
+
+
+----
