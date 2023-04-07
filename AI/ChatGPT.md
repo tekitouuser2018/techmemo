@@ -76,5 +76,11 @@ https://platform.openai.com/docs/guides/embeddings/what-are-embeddings
 
 <img width="1180" alt="スクリーンショット 2023-04-05 17 51 07" src="https://user-images.githubusercontent.com/38163743/230031364-addda859-c43d-48c2-8249-b738818afe66.png">
 
+- 特定のアルゴリズムなどを用いてGPTが直接計算することはできないため、数値などは推論などでシミュレーションの結果を表示しているだけの様子️（やりとり内でシミュレーションの結果を表示しているという記述を見かけた記憶がある）
+- pythonなどで実際にコードを書いてもらうことにより計算結果を出力してもらえる。
+
+<img width="1181" alt="スクリーンショット 2023-04-07 15 28 55" src="https://user-images.githubusercontent.com/38163743/230554560-1117687c-e904-4879-ab5d-633ec0a7d96e.png">
+<img width="1180" alt="スクリーンショット 2023-04-07 15 29 55" src="https://user-images.githubusercontent.com/38163743/230554620-da747a24-8f69-47a5-9d63-4a2442559168.png">
+<img width="1180" alt="スクリーンショット 2023-04-07 15 30 06" src="https://user-images.githubusercontent.com/38163743/230554642-ecf57262-9352-4694-8815-ee0e3497703c.png">
 
 ----
