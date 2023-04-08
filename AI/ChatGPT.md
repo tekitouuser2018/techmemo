@@ -21,6 +21,14 @@
 
 ### TIPS
 - 回答が途中で途切れた時（特にコードの記述など）は、「途切れたところから続きを書いてください」と入力すると途切れた文章の先頭などから続きを書いてくれる。※「continue」「続けて」「続きを書いてください」などと入力すると、変なところから続きを書いてしまい、完全に前の文章と繋がらなかったりする。
+- 話題のstep by stepで考えてもらうプロンプトは、「大項目」「中項目」「小項目」に分類して考えることと同じ？
+<img width="1180" alt="スクリーンショット 2023-04-09 0 09 18" src="https://user-images.githubusercontent.com/38163743/230729002-975cff5c-ff55-46dc-a346-923d9fbfe5de.png">
+- ChatGPTのパフォーマンスを最大限に引き出すためのプロンプト自体をChatGPTに質問する。
+<img width="1181" alt="スクリーンショット 2023-04-09 0 09 06" src="https://user-images.githubusercontent.com/38163743/230729014-7a374653-d298-4796-a7a5-f28d51564bf2.png">
+<img width="1178" alt="スクリーンショット 2023-04-09 0 09 40" src="https://user-images.githubusercontent.com/38163743/230729015-889d29cb-73e1-4e31-8b97-997deaa8f1b7.png">
+<img width="1182" alt="スクリーンショット 2023-04-09 0 09 57" src="https://user-images.githubusercontent.com/38163743/230729023-a85c847f-5829-4968-8bbb-231d0583119c.png">
+<img width="1181" alt="スクリーンショット 2023-04-09 0 10 31" src="https://user-images.githubusercontent.com/38163743/230729027-008e7904-75bc-42fe-90f7-8c6e0f3159e6.png">
+
 
 ### API
 - 従量課金であり料金も安いが、設定の見直しが必要だったり日本語だとトークンの使用量が多いなど注意点がある。
