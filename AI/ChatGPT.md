@@ -106,3 +106,6 @@ https://platform.openai.com/docs/guides/embeddings/what-are-embeddings
 
 ----
 
+### その他
+
+<img width="1180" alt="スクリーンショット 2023-04-09 15 43 36" src="https://user-images.githubusercontent.com/38163743/230758848-30077f3a-b2d0-4192-9eec-32b7736fc583.png">
