@@ -95,3 +95,14 @@ https://platform.openai.com/docs/guides/embeddings/what-are-embeddings
 <img width="1180" alt="スクリーンショット 2023-04-07 15 30 06" src="https://user-images.githubusercontent.com/38163743/230554642-ecf57262-9352-4694-8815-ee0e3497703c.png">
 
 ----
+
+### アイデア
+
+- クイズゲームBot
+<img width="1181" alt="スクリーンショット 2023-04-09 15 42 58" src="https://user-images.githubusercontent.com/38163743/230758735-522bdc88-596e-4125-bd4d-f7e06b72bc11.png">
+
+- シミュレーションによる訓練
+<img width="1180" alt="スクリーンショット 2023-04-09 15 44 06" src="https://user-images.githubusercontent.com/38163743/230758743-d6963623-c86c-4ea1-9ff0-ad8f95d6e145.png">
+
+----
+
