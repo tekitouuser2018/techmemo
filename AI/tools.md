@@ -22,6 +22,11 @@ https://www.pinecone.io
 
 https://dev.classmethod.jp/articles/dive-deep-into-modern-data-saas-about-pinecone/
 
+#### 読み上げ関連
+
+- 読み上げ機能は、elevenlabsのAPIかmacOSの機能かpythonのplaysoundを使用している
+https://github.com/Torantulino/Auto-GPT/blob/master/scripts/speak.py#L74..L91
+
 ----
 ### babyagi
 
