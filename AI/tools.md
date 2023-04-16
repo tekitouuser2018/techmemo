@@ -27,6 +27,17 @@ https://dev.classmethod.jp/articles/dive-deep-into-modern-data-saas-about-pineco
 - 読み上げ機能は、elevenlabsのAPIかmacOSの機能かpythonのplaysoundを使用している
 https://github.com/Torantulino/Auto-GPT/blob/master/scripts/speak.py#L74..L91
 
+#### OpenAI API
+openaiのAPIの使用は２種類
+
+openai.ChatCompletion.create
+
+https://github.com/Significant-Gravitas/Auto-GPT/blob/master/autogpt/llm_utils.py#L81-L96
+
+openai.Embedding.create
+
+https://github.com/Significant-Gravitas/Auto-GPT/blob/master/autogpt/llm_utils.py#L128-L138
+
 ----
 ### babyagi
 
