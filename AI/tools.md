@@ -38,6 +38,24 @@ openai.Embedding.create
 
 https://github.com/Significant-Gravitas/Auto-GPT/blob/master/autogpt/llm_utils.py#L128-L138
 
+* execute_command
+
+  * brows_website
+
+    https://github.com/Significant-Gravitas/Auto-GPT/blob/master/autogpt/app.py#L163-L164
+
+    https://github.com/Significant-Gravitas/Auto-GPT/blob/ad7cefa10c0647feee85114d58559fcf83ba6743/autogpt/commands/web_selenium.py#L24-L43
+
+    * seleniumとbeautifulsoupを使用してスクレイピング
+
+      https://github.com/Significant-Gravitas/Auto-GPT/blob/ad7cefa10c0647feee85114d58559fcf83ba6743/autogpt/commands/web_selenium.py#L46-L97
+      
+    * テキストをchunkごとに分割してChatpGPTに投げて要約し、それらを連結したものをさらに要約
+
+      https://github.com/Significant-Gravitas/Auto-GPT/blob/ad7cefa10c0647feee85114d58559fcf83ba6743/autogpt/processing/text.py#L42-L99
+      
+      https://github.com/Significant-Gravitas/Auto-GPT/blob/ad7cefa10c0647feee85114d58559fcf83ba6743/autogpt/llm_utils.py#L53
+
 ----
 ### babyagi
 
