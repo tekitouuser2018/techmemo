@@ -12,10 +12,9 @@ https://docs.python.org/ja/3/library/abc.html
 - メモリクラスをシングルトンで取り扱い: 
 https://github.com/Torantulino/Auto-GPT/blob/master/scripts/memory/base.py
 
-- メモリはpineconeまたはredisを使用し、どちらも存在しなければローカルファイルを使用する: 
-https://github.com/Torantulino/Auto-GPT/blob/98efd264560983ed1d383222e3d5d22ed87169be/scripts/memory/__init__.py#L23..L46
+- メモリはpinecone or redis or weaviate or milvusを使用し、どちらも存在しなければローカルファイルを使用する: 
+https://github.com/Significant-Gravitas/Auto-GPT/blob/ad7cefa10c0647feee85114d58559fcf83ba6743/autogpt/memory/__init__.py#L37-L78
 
-https://github.com/Torantulino/Auto-GPT/blob/master/scripts/memory/local.py#L25..L45
 
 - pinecone: 
 https://www.pinecone.io
