@@ -23,8 +23,8 @@ https://dev.classmethod.jp/articles/dive-deep-into-modern-data-saas-about-pineco
 
 #### 読み上げ関連
 
-- 読み上げ機能は、elevenlabsのAPIかmacOSの機能かpythonのplaysoundを使用している
-https://github.com/Torantulino/Auto-GPT/blob/master/scripts/speak.py#L74..L91
+- 読み上げ機能は、elevenlabsのAPIかmacOSの機能かBrianSpeechかpythonのplaysoundを使用している
+https://github.com/Significant-Gravitas/Auto-GPT/blob/ad7cefa10c0647feee85114d58559fcf83ba6743/autogpt/speech/say.py
 
 #### OpenAI API
 openaiのAPIの使用は２種類
