@@ -1,5 +1,7 @@
 ### 勉強会
 
+#### 【10X×リンクアンドモチベーション】どう向き合う？ChatGPT時代のエンジニア組織づくり
+
 https://findy.connpass.com/event/279910/?utm_campaign=event_message_to_selected_participant&utm_source=notifications&utm_medium=email&utm_content=title_link
 
 「印象に残った点、気になった点」
@@ -17,5 +19,12 @@ https://findy.connpass.com/event/279910/?utm_campaign=event_message_to_selected_
   
   - ChatGPTは中央値を出すのに適しているため(10x自身も発言していた)、コーナーケースや特殊ケースには対応できない可能性が高い。そのため、仕様確認の際には特に特殊ケースに対して注意する必要がある。
 
+----
 
+#### DX内製化の裏側に迫る〜東急とパイオニアが目指すエンジニア組織〜
 
+https://findy.connpass.com/event/279575/?utm_campaign=event_message_to_selected_participant&utm_source=notifications&utm_medium=email&utm_content=title_link
+
+「印象に残った点、気になった点」
+- マネージャーが存在せず各シニアエンジニアが自発的に動いているような状況で、属人化しないようドキュメントなど残してもらうようにしている。
+- 内製化について、まず小さく始める
