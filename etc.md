@@ -28,3 +28,23 @@ https://findy.connpass.com/event/279575/?utm_campaign=event_message_to_selected_
 「印象に残った点、気になった点」
 - マネージャーが存在せず各シニアエンジニアが自発的に動いているような状況で、属人化しないようドキュメントなど残してもらうようにしている。
 - 内製化について、まず小さく始める
+
+----
+
+#### それってPM業務？みんなの組織のPM担当範囲を聞いてみよう【開発PM勉強会 vol.19】
+
+https://peer-quest.connpass.com/event/278275/?utm_campaign=event_message_to_selected_participant&utm_source=notifications&utm_medium=email&utm_content=title_link
+
+「印象に残った点、気になった点」
+- 現場によって役割は全く異なってくる。
+- やらないことを決める。やらないことリストの作成と情報共有。デシジョンツリーの使用。
+
+  → 結果: ミーティングの時間を大幅に削減。開発やリリースに余裕を持てるようになった。
+  
+- PMとしてこれだけはやらなければならないこと。
+
+  → 方向性を指し示す。ロードマップの根拠を提示する。顧客との会話。
+  
+- 新規プロジェクトでPdMがやるべきこと。
+
+  → 顧客に話を聞く。とにかく調べて仮説をたてる。
