@@ -36,6 +36,8 @@ Rubyをjemalloc付きでコンパイルする必要はありません（一応�
 
 https://techracho.bpsinc.jp/hachi8833/2022_06_23/50109
 
+https://tech.medpeer.co.jp/entry/ruby-jemalloc
+
 ----
 
 ### 非同期I/O
