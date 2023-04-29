@@ -55,3 +55,11 @@ https://ryozi.hatenadiary.jp/entry/2022/02/12/073014
 https://twitter.com/ockeghem/status/1492786731607019523
 
 ----
+
+### RFC7519
+
+> JSON Web Token（JWT）は、2つのパーティ間で転送されるクレームを表す、コンパクトでURLセーフな手段です。 JWTのクレームは、JSON Web Signature（JWS）構造のペイロードとして、またはJSON Web Encryption（JWE）構造のプレーンテキストとして使用されるJSONオブジェクトとしてエンコードされ、クレームをデジタル署名または整合性保護することができます。メッセージ認証コード（MAC）で暗号化されています。
+
+https://tex2e.github.io/rfc-translater/html/rfc7519.html
+
+----
