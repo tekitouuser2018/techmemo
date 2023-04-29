@@ -54,6 +54,9 @@ https://ryozi.hatenadiary.jp/entry/2022/02/12/073014
 
 https://twitter.com/ockeghem/status/1492786731607019523
 
+JWTハンドブック<br/>
+https://assets.ctfassets.net/2ntc334xpx65/5HColfm15cUhMmDQnupNzd/30d5913d94e79462043f6d8e3f557351/jwt-handbook-jp.pdf
+
 ----
 
 ### RFC7519
