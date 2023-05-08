@@ -65,6 +65,13 @@ Twilio Functionsは、本番レベルのイベント駆動型Twilioアフ�
 
 https://www.twilio.com/ja/docs/runtime/functions
 
+Build a Video Chat Application with Ruby, JavaScript, and Twilio Programmable Video
+
+https://www.twilio.com/blog/build-video-chat-ruby-javascript-twilio-programmable-video
+
+https://www.docswell.com/s/Neri78/Z71DNZ-WEBRTC-GO
+
+https://zenn.dev/sheep96/articles/cb585dc3982190
 
 ----
 
