@@ -49,8 +49,24 @@ https://system-kanji.com/posts/call-application-development
 
 https://jp.vcube.com/sdk/blog/summary-of-webrtc-commercial-services.-twilio-skyway-sora-agora.io-etc.html
 
+----
 
+### HOW TO
+
+#### Twilio
+
+Twilioの機能だけでサーバーレスなビデオ通話アプリが作れる
+
+https://dev.classmethod.jp/articles/making-a-video-conferencing-app-with-twilio-webrtc-hands-on/
+
+https://qiita.com/mobilebiz/items/bdace9699ce77dbc7279
+
+Twilio Functionsは、本番レベルのイベント駆動型Twilioアプリケーションを、短時間で作成することを支援するサーバーレス環境です。ビジネスの規模に応じて拡張できます。
+
+https://www.twilio.com/ja/docs/runtime/functions
 
 
 ----
+
+
 
