@@ -545,4 +545,16 @@ https://qiita.com/Esfahan/items/90feb3ae39dde51f95fa
 
 https://sakura-bird1.hatenablog.com/entry/2016/12/01/132715
 
+grape-swagger
+
+https://github.com/ruby-grape/grape-swagger
+
+https://github.com/ruby-grape/grape#describing-methods
+
+https://tech.unifa-e.com/entry/2017/04/06/184427
+
+https://my-blog-peach.vercel.app/blog/3OjcB6OfQKc9EvV0LWHHtj
+
+https://techium.hatenablog.com/entry/2017/07/31/085113
+
 ----
