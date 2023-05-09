@@ -8,6 +8,12 @@ https://developer.ntt.com/ja/blog/522676d0-7336-4139-b70a-ec6059e10cf3
 
 ----
 
+RailsでのREST API開発の知見共有
+
+https://www.slideshare.net/kon_yu/railsrest-api-250871074
+
+----
+
 ## APIモードとは
 
 RailsのAPIモードは、Railsアプリケーションの中でも、APIサーバーを開発するために特化したモードです。
