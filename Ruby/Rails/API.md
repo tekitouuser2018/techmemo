@@ -530,3 +530,19 @@ https://ivangoncharov.github.io/graphql-voyager/
 https://github.com/IvanGoncharov/graphql-voyager
 
 ----
+### grape
+
+- 集約クラスをroutes.rbに記述する
+- すべてのAPIバージョンを集約するクラスが1つ必要
+- 各APIバージョンについて、すべてのリソースをマウントする集約クラスが必要
+- Controller作成
+
+https://github.com/ruby-grape/grape
+
+https://github.com/monterail/rails-grape-example/tree/master
+
+https://qiita.com/Esfahan/items/90feb3ae39dde51f95fa
+
+https://sakura-bird1.hatenablog.com/entry/2016/12/01/132715
+
+----
