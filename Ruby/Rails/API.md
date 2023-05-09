@@ -1,3 +1,13 @@
+## 設計
+
+https://cloud.google.com/apis/design?hl=ja
+
+https://qiita.com/KNR109/items/d3b6aa8803c62238d990
+
+https://developer.ntt.com/ja/blog/522676d0-7336-4139-b70a-ec6059e10cf3
+
+----
+
 ## APIモードとは
 
 RailsのAPIモードは、Railsアプリケーションの中でも、APIサーバーを開発するために特化したモードです。
