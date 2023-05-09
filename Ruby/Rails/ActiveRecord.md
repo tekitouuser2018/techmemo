@@ -18,7 +18,10 @@ https://tech.tabechoku.com/entry/2020/06/15/132518
 
 https://techlife.cookpad.com/entry/2023/04/13/141200
 
+DBの寿命はアプリより長い<br/>
+であるため、データの価値や活用、取り扱いについて先々のことまで考慮する必要があり、基本的にはDB設計をアプリケーションやフレームワークに合わせたり寄せるのは間違い
 
+https://eh-career.com/engineerhub/entry/2018/12/11/110000
 
 ----
 
