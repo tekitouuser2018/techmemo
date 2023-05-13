@@ -10,8 +10,17 @@
 
 > セッションベース認証のメリットは、リクエストのたびに認証情報を送る必要がないため、ログイン後の処理が高速である点。また、豊富なフレームワークが存在するため、実装が容易である点もメリットとしてあげられています。デメリットはサーバー側で認証情報を保持したままである点、認証が必要なくてもCookieをリクエスト毎に送信する必要がある点、クロスサイトリクエストフォージェリに弱い点があるとのこと。
 
-安全なウェブサイトの作り方 - 1.4 セッション管理の不備
+- 安全なウェブサイトの作り方 - 1.4 セッション管理の不備
+
 https://www.ipa.go.jp/security/vuln/websecurity/session-management.html
+
+- セッションIDの管理はRDBかRedisで行うのが通常
+
+https://tech.pepabo.com/2020/09/23/session-management-for-web-apps-using-spa-ssr-api/
+
+https://techracho.bpsinc.jp/hachi8833/2018_09_19/61260
+
+https://tech-blog.rakus.co.jp/entry/2017/10/17/111828
 
 ### トークンベース認証
 
