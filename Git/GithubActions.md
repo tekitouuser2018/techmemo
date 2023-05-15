@@ -166,6 +166,51 @@ jobs:
 
 ----
 
+Ruby 3.0, Rails 7.0, Reactの環境で、pushイベント時にRSpec（Rubyのテストフレームワーク）、Jest（JavaScriptのテストフレームワーク）、Lint（静的解析ツール）、およびPrettier（コードフォーマッター）が実行されるようなGitHub Actionsの設定例
+
+```yaml
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 3.0
+
+    - name: Install dependencies
+      run: |
+        bundle install
+        yarn install
+
+    - name: Run RSpec
+      run: bundle exec rspec
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'
+
+    - name: Run Jest
+      run: yarn jest
+
+    - name: Run ESLint
+      run: yarn eslint
+
+    - name: Run Prettier
+      run: yarn prettier --check .
+```
+
+----
 
 
 
