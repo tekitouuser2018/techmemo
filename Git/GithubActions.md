@@ -168,7 +168,7 @@ jobs:
 
 ----
 
-Ruby 3.0, Rails 7.0, Reactの環境で、pushイベント時にRSpec（Rubyのテストフレームワーク）、Jest（JavaScriptのテストフレームワーク）、Lint（静的解析ツール）、およびPrettier（コードフォーマッター）が実行されるようなGitHub Actionsの設定例
+Ruby 3.0, Rails 7.0, MySQL8.0, Reactの環境で、pushイベント時にRSpec（Rubyのテストフレームワーク）、Jest（JavaScriptのテストフレームワーク）、Lint（静的解析ツール）、およびPrettier（コードフォーマッター）が実行されるようなGitHub Actionsの設定例
 
 ```yaml
 name: CI
@@ -180,6 +180,14 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    services:
+      db:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: password
+        ports: ["3306:3306"]
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
     - uses: actions/checkout@v2
@@ -193,6 +201,14 @@ jobs:
       run: |
         bundle install
         yarn install
+
+    - name: Setup test database
+      env:
+        RAILS_ENV: test
+        DATABASE_URL: mysql2://root:password@localhost/test
+      run: |
+        bundle exec rake db:create
+        bundle exec rake db:schema:load
 
     - name: Run RSpec
       run: bundle exec rspec
@@ -210,6 +226,7 @@ jobs:
 
     - name: Run Prettier
       run: yarn prettier --check .
+
 ```
 
 ----
