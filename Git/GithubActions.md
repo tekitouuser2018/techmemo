@@ -40,6 +40,17 @@ GitHub Actionsは、YAMLファイルを使用してワークフローを定義�
 GitHub Actionsは、CI/CDの基本的な機能を提供するため、多くの場合、小規模なプロジェクトや開発者に適しています。しかし、大規模なプロジェクトやエンタープライズレベルのアプリケーションでは、専用のCI/CDツールを使用することが推奨されます。
 
 ----
+### セキュリティ
+
+https://docs.github.com/ja/actions/security-guides/security-hardening-for-github-actions
+
+https://zenn.dev/tmknom/books/pragmatic-composite-action/viewer/security
+
+https://mixi-developers.mixi.co.jp/iac-cicd-security-aws-x-github-actions-dfbd9ca91b9c
+
+https://github.blog/jp/2022-08-26-dependabot-now-alerts-for-vulnerable-github-actions/
+
+----
 
 ファイル記述例
 
