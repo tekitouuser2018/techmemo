@@ -32,3 +32,14 @@ https://qiita.com/yumin/items/5de33b068ead564ebcbf
 https://note.com/yoshikouki/n/n45e707a178a8
 
 ----
+### Tutorial: https://go-tour-jp.appspot.com/
+
+defer
+
+https://go-tour-jp.appspot.com/flowcontrol/13
+
+pointer
+
+https://go-tour-jp.appspot.com/moretypes/1
+
+----
