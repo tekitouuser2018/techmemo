@@ -34,6 +34,10 @@ https://note.com/yoshikouki/n/n45e707a178a8
 ----
 ### Tutorial: https://go-tour-jp.appspot.com/
 
+https://zenn.dev/sharefull_blog/articles/1fb628d82ed79b
+
+https://engineering.mercari.com/blog/entry/goforbeginners/
+
 defer
 
 https://go-tour-jp.appspot.com/flowcontrol/13
