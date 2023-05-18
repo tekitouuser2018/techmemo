@@ -46,4 +46,12 @@ pointer
 
 https://go-tour-jp.appspot.com/moretypes/1
 
+slice
+
+sliceを伸長する際はcapを指定しないと２倍のサイズで確保されるため注意
+
+https://mattn.kaoriya.net/software/lang/go/20200404155447.htm
+
+https://qiita.com/imoty/items/bb18fb50d526474d2d10
+
 ----
