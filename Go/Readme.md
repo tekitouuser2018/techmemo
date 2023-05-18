@@ -60,6 +60,8 @@ https://qiita.com/imoty/items/bb18fb50d526474d2d10
 
 https://skatsuta.github.io/2015/12/29/value-receiver-pointer-receiver/
 
+標準ライブラリ
 
+https://ja.wikibooks.org/wiki/Go/%E6%A8%99%E6%BA%96%E3%83%A9%E3%82%A4%E3%83%96%E3%83%A9%E3%83%AA%E3%83%BC
 
 ----
