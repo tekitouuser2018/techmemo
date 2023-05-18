@@ -64,4 +64,10 @@ https://skatsuta.github.io/2015/12/29/value-receiver-pointer-receiver/
 
 https://ja.wikibooks.org/wiki/Go/%E6%A8%99%E6%BA%96%E3%83%A9%E3%82%A4%E3%83%96%E3%83%A9%E3%83%AA%E3%83%BC
 
+goroutine
+
+https://go-tour-jp.appspot.com/concurrency/1
+
+https://www.ariseanalytics.com/activities/report/20221005/
+
 ----
