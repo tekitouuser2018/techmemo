@@ -54,4 +54,12 @@ https://mattn.kaoriya.net/software/lang/go/20200404155447.htm
 
 https://qiita.com/imoty/items/bb18fb50d526474d2d10
 
+レシーバ
+
+基本はポインタレシーバを使用する
+
+https://skatsuta.github.io/2015/12/29/value-receiver-pointer-receiver/
+
+
+
 ----
