@@ -25,4 +25,14 @@ https://eh-career.com/engineerhub/entry/2018/12/11/110000
 
 ----
 
+### 水平シャーディング
+
+https://railsguides.jp/active_record_multiple_databases.html
+
+https://hackerslab.aktsk.jp/2020/12/20/040504
+
+https://blog.vtryo.me/entry/horizontal-sharding-with-rails7-mysql-in-local
+
+----
+
 
