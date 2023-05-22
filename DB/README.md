@@ -718,6 +718,16 @@ AWSでは、Application Load BalancerやNetwork Load Balancerなどの負荷分�
 5. シャーディング:
 データベースのパーティショニング技術であるシャーディングを使用することで、データベースの負荷を分散させることができます。シャーディングでは、テーブルを複数の分割されたテーブル（シャード）に分け、それぞれのシャードを別々のデータベースに配置します。Railsアプリケーションでは、シャードキーに基づいてデータの書き込みや読み込みを適切なシャードにルーティングすることで、データベースの負荷を軽減することができます。
 
+シャーディングにおいて、採番方法の選択やインフラ運用の複雑化やデータ分析の複雑化など考慮すべき点が多数ある。
+
+https://www.infoq.com/jp/articles/next-evolution-of-database-sharding-architecture/
+
+https://aws.amazon.com/jp/what-is/database-sharding/
+
+https://qiita.com/goccy/items/a54af6db3b8623e90c38
+
+https://speakerdeck.com/dena_tech/techcon2021-3
+
 6. スケーラブルなアーキテクチャ:
 アプリケーションのアーキテクチャをスケーラブルに設計することで、負荷が増えた際に迅速に対応できるようにします。例えば、Railsアプリケーションでは、マイクロサービスアーキテクチャを採用し、個々のサービスを独立してスケールさせることができます。
 
