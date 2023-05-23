@@ -38,3 +38,12 @@ WYSIWYGエディター
 <br>
 https://railsguides.jp/action_text_overview.html
 
+### Database Cleaner
+
+> Database Cleaner is a set of gems containing strategies for cleaning your database in Ruby.
+The original use case was to ensure a clean state during tests. Each strategy is a small amount of code but is code that is usually needed in any ruby app that is testing with a database.
+
+https://github.com/DatabaseCleaner/database_cleaner
+
+https://qiita.com/napoano365/items/9460d28d48c0f95c0443
+
