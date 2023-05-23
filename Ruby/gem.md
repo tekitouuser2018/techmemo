@@ -47,3 +47,7 @@ https://github.com/DatabaseCleaner/database_cleaner
 
 https://qiita.com/napoano365/items/9460d28d48c0f95c0443
 
+https://product.st.inc/entry/2022/10/20/145443
+
+
+
