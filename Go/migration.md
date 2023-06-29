@@ -127,3 +127,54 @@ func (s Sparrow) Chirp() {
 }
 
 ```
+
+****
+
+### DI
+
+JavaのSpring Bootでは依存性の注入（DI）はフレームワークによって管理されており、クラスが他のクラスに依存している場合、その依存性は自動的に注入されます。これは主に@Autowiredアノテーションを使用して行われます。
+
+Java
+```java
+@Service
+public class UserService {
+
+    private final UserRepository userRepository;
+
+    @Autowired
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    // その他のメソッド
+}
+
+
+```
+
+Go
+
+GoにはSpring Bootのようなフレームワークが存在せず、自動的な依存性の注入機能はありません。そのため、依存性は手動で注入する必要があります。通常、これはコンストラクタを通じて行われます。
+
+```go
+type UserRepository interface {
+    // その他のメソッド
+}
+
+type UserService struct {
+    userRepository UserRepository
+}
+
+func NewUserService(userRepository UserRepository) *UserService {
+    return &UserService{userRepository: userRepository}
+}
+
+// その他のメソッド
+
+
+```
+
+
+ここでは、UserServiceはUserRepositoryに依存しています。NewUserService関数は、UserRepositoryの依存性を注入するためのコンストラクタとして機能します。
+
+もしこれにさらに高度な依存性の管理や自動的な注入が必要な場合、Goで使用できるDIフレームワークやライブラリ（例えば、uber-go/digやgoogle/wire）を利用することも可能です。ただし、Goの開発者の間では、可能な限り明示的な依存性の注入とシンプルな設計を推奨する傾向にあります。
