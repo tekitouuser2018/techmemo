@@ -178,3 +178,62 @@ func NewUserService(userRepository UserRepository) *UserService {
 ここでは、UserServiceはUserRepositoryに依存しています。NewUserService関数は、UserRepositoryの依存性を注入するためのコンストラクタとして機能します。
 
 もしこれにさらに高度な依存性の管理や自動的な注入が必要な場合、Goで使用できるDIフレームワークやライブラリ（例えば、uber-go/digやgoogle/wire）を利用することも可能です。ただし、Goの開発者の間では、可能な限り明示的な依存性の注入とシンプルな設計を推奨する傾向にあります。
+
+****
+
+### ルーティング
+
+Spring Boot:
+
+Spring Bootでのルーティングは通常、Controllerとそのメソッドに注釈を付けることにより行います。以下に例を示します。
+
+```Java
+package main
+
+import "github.com/gin-gonic/gin"
+
+func main() {
+    r := gin.Default()
+
+    r.GET("/hello", func(c *gin.Context) {
+        c.String(200, "Hello, World!")
+    })
+
+    r.GET("/goodbye", func(c *gin.Context) {
+        c.String(200, "Goodbye, World!")
+    })
+
+    r.Run() // listen and serve on 0.0.0.0:8080
+}
+```
+
+GoのGin:
+
+GoのGinフレームワークでは、ルーティングはルートグループとハンドラ関数を使って定義します。以下に例を示します。
+
+```go
+
+package main
+
+import "github.com/gin-gonic/gin"
+
+func main() {
+    r := gin.Default()
+
+    r.GET("/hello", func(c *gin.Context) {
+        c.String(200, "Hello, World!")
+    })
+
+    r.GET("/goodbye", func(c *gin.Context) {
+        c.String(200, "Goodbye, World!")
+    })
+
+    r.Run() // listen and serve on 0.0.0.0:8080
+}
+```
+
+上記の例では、"/hello"と"/goodbye"の2つのエンドポイントを定義しています。各エンドポイントは、そのハンドラ関数（ここでは匿名関数）を持っています。
+
+***
+
+
