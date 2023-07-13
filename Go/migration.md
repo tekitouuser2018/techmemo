@@ -1074,3 +1074,119 @@ func helloHandler(c *gin.Context) {
 なお、上記の例ではOAuth認証の具体的な実装や権限チェックの処理は省略しています。これらの処理は、使用するOAuthのサービスやアプリケーションの要件によって実装方法が異なるためです。
 
 ****
+
+### 認可
+
+Spring Boot (Spring Security)
+
+Spring Securityでは、メソッドレベルでの認可制御を行うために@PreAuthorizeや@PostAuthorizeといった注釈を利用します。これらはSpringのAOP（Aspect-Oriented Programming）機能を活用して、メソッドの実行前後に特定の認可チェックを行うことができます。
+
+まず、以下のようにGlobalMethodSecurityを有効にします。
+
+```Java
+@Configuration
+@EnableGlobalMethodSecurity(prePostEnabled = true)
+public class MethodSecurityConfig 
+  extends GlobalMethodSecurityConfiguration {
+}
+```
+
+次に、コントローラのメソッドに@PreAuthorizeを使ってアクセス制御を定義します。
+
+```Java
+@RestController
+public class MyController {
+
+    @PreAuthorize("hasRole('ROLE_USER')")
+    @GetMapping("/user")
+    public String getUser() {
+        return "user data";
+    }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @GetMapping("/admin")
+    public String getAdmin() {
+        return "admin data";
+    }
+}
+```
+
+この例では、/userエンドポイントはROLE_USERを持つユーザだけがアクセスでき、/adminエンドポイントはROLE_ADMINを持つユーザだけがアクセスできるように制御しています。
+
+Go (Gin)
+
+Ginでは、認可を実装するための特定のライブラリは提供されていませんが、ミドルウェアを活用して認可制御を実装できます。
+
+以下に、Ginでのロールベースの認可を行う基本的なミドルウェアの例を示します。
+
+```go
+package main
+
+import (
+	"net/http"
+
+	"github.com/gin-gonic/gin"
+)
+
+func main() {
+	router := gin.Default()
+
+	router.Use(AuthRequired())
+
+	userGroup := router.Group("/user")
+	{
+		userGroup.GET("", getUser)
+	}
+
+	adminGroup := router.Group("/admin")
+	adminGroup.Use(RoleRequired("admin"))
+	{
+		adminGroup.GET("", getAdmin)
+	}
+
+	router.Run()
+}
+
+// AuthRequired is the middleware for check if the user is authenticated
+func AuthRequired() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		token := c.GetHeader("Authorization")
+		// TODO: ヘッダーから取得したトークンを検証し、認証情報を取得します
+
+		if /* 認証情報が不足している場合 */ {
+			c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"error": "unauthorized"})
+			return
+		}
+
+		c.Next()
+	}
+}
+
+// RoleRequired is the middleware for check if the user has the required role
+func RoleRequired(role string) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		// TODO: コンテクストから認証情報を取得し、ロールを確認します
+
+		if /* ユーザのロールが要求されたロールと一致しない場合 */ {
+			c.AbortWithStatusJSON(http.StatusForbidden, gin.H{"error": "forbidden"})
+			return
+		}
+
+		c.Next()
+	}
+}
+
+func getUser(c *gin.Context) {
+	// ...
+}
+
+func getAdmin(c *gin.Context) {
+	// ...
+}
+```
+
+この例では、AuthRequiredミドルウェアが全てのルートに対して適用されており、ユーザの認証を確認しています。さらに、/adminエンドポイントに対しては追加でRoleRequiredミドルウェアが適用されており、特定のロール（この例では"admin"）を必要とする認可制御を行っています。
+
+なお、上記の例ではAuthRequiredやRoleRequiredの中で認証情報の検証やロールの確認の具体的な処理は省略されています。これらの処理は、使用する認証手段やアプリケーションの要件によって実装方法が異なるためです。たとえばJWTを使用する場合には、AuthRequiredでJWTトークンをデコードし検証し、RoleRequiredでデコードされたクレームからロールを取得して比較する、といった形になるでしょう。
+
+****
