@@ -1276,4 +1276,149 @@ func main() {
 
 ****
 
+### CSRF対策
+
+Spring Boot
+
+Spring Bootでは、Spring Securityを使用してCSRF（Cross-Site Request Forgery）対策を実施します。デフォルトでは、Spring SecurityはCSRF対策を有効にしています。
+
+以下に、Spring BootでCSRF対策を有効にする基本的な設定を示します。
+
+```Java
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+            // .csrf().disable()  // CSRF対策を無効にする場合はこの行をコメントアウト
+            .authorizeRequests()
+            .anyRequest().authenticated()
+            .and()
+            .formLogin()
+            .permitAll();
+    }
+}
+```
+
+ここでは、CSRF対策がデフォルトで有効化されています。なお、Spring Security 5.0以降ではWebSecurityConfigurerAdapterが非推奨となっていて、代わりにSecurityFilterChainを使用することが推奨されています。
+
+Spring Security 5.0以降では、WebSecurityConfigurerAdapterは非推奨となり、SecurityFilterChainを使用することが推奨されています。以下にSecurityFilterChainを使用したCSRF対策の例を示します：
+
+```Java
+@Configuration
+public class SecurityConfig {
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http
+            .authorizeRequests(authorize -> authorize
+                .anyRequest().authenticated()
+            )
+            .csrf(csrf -> csrf
+                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+            )
+            .formLogin(withDefaults());
+        return http.build();
+    }
+}
+```
+
+上記の設定では、CSRF対策が有効であり、CSRFトークンはCookieCsrfTokenRepositoryを用いて管理され、これはクッキーを通じてトークンをクライアントに送信します。HTTP Only属性がfalseに設定されているため、JavaScriptからCSRFトークンを読み取ることができます。
+
+また、フォームのログイン設定はデフォルトのままで、全てのリクエストに対して認証が必要とされています。
+
+CSRFトークンをビューに埋め込むためには以下のようにします（Thymeleafの例）：
+
+```html
+<form action="#" th:action="@{/form}" th:object="${formObject}" method="post">
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+    <!-- フォームの内容 -->
+</form>
+```
+
+Go Gin
+
+Go言語のGinフレームワークでは、gin-contrib/csrfミドルウェアを使用してCSRF対策を実施します。
+
+以下に、GinでCSRF対策を有効にする基本的な設定を示します。
+
+```go
+package main
+
+import (
+	"github.com/gin-contrib/csrf"
+	"github.com/gin-gonic/gin"
+	"net/http"
+)
+
+func main() {
+	r := gin.Default()
+
+	r.Use(csrf.Middleware(csrf.Options{
+		Secret: "secret123",
+		ErrorFunc: func(c *gin.Context) {
+			c.String(400, "CSRF token mismatch")
+			c.Abort()
+		},
+	}))
+
+	r.GET("/form", func(c *gin.Context) {
+		// CSRFトークンを生成
+		csrfToken := csrf.GetToken(c)
+
+		// CSRFトークンを使用するHTMLフォームをレンダリング
+		c.HTML(http.StatusOK, "form.html", gin.H{
+			"csrf": csrfToken,
+		})
+	})
+
+	r.POST("/form", func(c *gin.Context) {
+		// POSTリクエストを処理
+	})
+
+	r.Run()
+}
+```
+
+上記のコードでは、gin-contrib/csrfを使用してCSRF対策を行っています。セットアップ時にCSRFトークンのSecretを指定し、エラーが発生した際の処理を定義しています。
+
+CSRFトークンを含むHTMLフォームを送信する例です：
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Form</title>
+</head>
+<body>
+  <form action="/submit" method="post">
+    <input type="hidden" name="csrf_token" value="{{.csrf}}">
+    <label for="username">Username:</label><br>
+    <input type="text" id="username" name="username"><br>
+    <input type="submit" value="Submit">
+  </form>
+</body>
+</html>
+```
+
+次に、GoのGinフレームワークでフォームからのPOSTリクエストを受け取る例です：
+
+```go
+r.POST("/submit", func(c *gin.Context) {
+	// POSTリクエストを処理
+	username := c.PostForm("username")
+
+	// usernameを使って何らかの処理を行う...
+
+	c.String(200, "Form submitted")
+})
+```
+
+上記の例では、Ginのc.PostForm()メソッドを使用してフォームから送信されたデータを受け取ります。ここではusernameという名前のデータを受け取っています。
+
+CSRFミドルウェアが有効になっていると、フォームからのPOSTリクエストを処理する前にCSRFトークンが検証されます。これにより、CSRFトークンが無効または不足している場合、ミドルウェアはエラーレスポンスを生成し、リクエストの処理を止めます。
+
+****
+
 
