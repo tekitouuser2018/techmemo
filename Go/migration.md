@@ -912,3 +912,165 @@ func TestSomething(t *testing.T) {
 
 ****
 
+### 認証
+
+Spring Boot (Spring Security)
+
+Spring SecurityはOAuth2とJWTのサポートが充実しています。以下に、OAuth2とJWTを使用した認証の設定例を示します。以下の例では、OAuth2 Authorization Serverから取得したJWTトークンを検証して、ユーザの認証を行うように設定しています。
+
+```Java
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+            .authorizeRequests()
+                .anyRequest().authenticated()
+                .and()
+            .oauth2ResourceServer()
+                .jwt();
+    }
+
+    @Bean
+    public JwtDecoder jwtDecoder(OAuth2ResourceServerProperties properties) {
+        String issuerUri = properties.getJwt().getIssuerUri();
+        NimbusJwtDecoder jwtDecoder = (NimbusJwtDecoder)
+            JwtDecoders.fromOidcIssuerLocation(issuerUri);
+
+        // ここでトークンの検証設定を行うことができます。
+        // 以下はオーディエンスチェックの例です。
+        OAuth2TokenValidator<Jwt> withAudience = new AudienceValidator("my-audience");
+        OAuth2TokenValidator<Jwt> withIssuer = JwtValidators.createDefaultWithIssuer(issuerUri);
+        OAuth2TokenValidator<Jwt> validator = new DelegatingOAuth2TokenValidator<>(withAudience, withIssuer);
+
+        jwtDecoder.setJwtValidator(validator);
+        return jwtDecoder;
+    }
+}
+```
+
+この例では、HTTPリクエストのAuthorizationヘッダにBearerトークンとして送られてくるJWTトークンを検証し、そのトークンが有効ならリクエストを通すように設定しています。jwtDecoderメソッドでは、トークンの検証方法を定義しています。この例では、IssuerとAudienceの検証を行っています。
+
+Go (Gin)
+
+Ginでは、認証とJWTトークンの検証を行うためのミドルウェアを自分で作成するか、サードパーティのライブラリを利用します。以下に、github.com/appleboy/gin-jwt/v2ライブラリを使用してOAuthとJWTを用いた認証の例を示します。
+
+```go
+package main
+
+import (
+	"time"
+
+	"github.com/appleboy/gin-jwt/v2"
+	"github.com/gin-gonic/gin"
+)
+
+// User model
+type User struct {
+	ID       string
+	Username string
+	Password string
+}
+
+// JWT middleware
+var authMiddleware *jwt.GinJWTMiddleware
+
+func init() {
+	var err error
+
+	authMiddleware, err = jwt.New(&jwt.GinJWTMiddleware{
+		Realm:       "my realm",
+		Key:         []byte(os.Getenv("JWT_SECRET")),
+		Timeout:     time.Hour,
+		MaxRefresh:  time.Hour,
+		IdentityKey: "id",
+		PayloadFunc: func(data interface{}) jwt.MapClaims {
+			if v, ok := data.(*User); ok {
+				return jwt.MapClaims{
+					"id": v.ID,
+				}
+			}
+			return jwt.MapClaims{}
+		},
+		IdentityHandler: func(c *gin.Context) interface{} {
+			claims := jwt.ExtractClaims(c)
+			return &User{
+				ID: claims["id"].(string),
+			}
+		},
+		Authenticator: func(c *gin.Context) (interface{}, error) {
+			var loginVals Login
+			if err := c.ShouldBind(&loginVals); err != nil {
+				return "", jwt.ErrMissingLoginValues
+			}
+			userID := loginVals.Username
+			password := loginVals.Password
+
+			// Replace with your own logic
+			user, err := authenticate(userID, password)
+			if err != nil {
+				return nil, jwt.ErrFailedAuthentication
+			}
+
+			return &User{
+				ID: userID,
+			}, nil
+		},
+		Authorizator: func(data interface{}, c *gin.Context) bool {
+			if v, ok := data.(*User); ok {
+				// Replace with your own logic
+				return checkUserPrivileges(v, c)
+			}
+
+			return false
+		},
+		Unauthorized: func(c *gin.Context, code int, message string) {
+			c.JSON(code, gin.H{
+				"code":    code,
+				"message": message,
+			})
+		},
+		TokenLookup: "header: Authorization",
+	})
+
+	if err != nil {
+		panic("JWT Error:" + err.Error())
+	}
+}
+
+func main() {
+	r := gin.Default()
+
+	r.POST("/login", authMiddleware.LoginHandler)
+
+	auth := r.Group("/auth")
+	auth.Use(authMiddleware.MiddlewareFunc())
+	{
+		auth.GET("/refresh_token", authMiddleware.RefreshHandler)
+		auth.GET("/hello", helloHandler)
+	}
+
+	r.Run()
+}
+
+func helloHandler(c *gin.Context) {
+	claims := jwt.ExtractClaims(c)
+	user, _ := c.Get("id")
+	c.JSON(200, gin.H{
+		"userID":   claims["id"],
+		"userName": user.(*User).UserName,
+		"text":     "Hello World.",
+	})
+}
+
+
+```
+
+この例では、まず/loginエンドポイントでログイン情報を受け取り、OAuth認証を行います。認証が成功すればJWTトークンを生成してクライアントに返します。次に、/authプレフィックスのあるエンドポイントでは、authMiddleware.MiddlewareFunc()ミドルウェアを通過することでJWTトークンの検証を行い、ユーザの認証を確認します。
+そして、authMiddleware というJWTミドルウェアの作成と初期化を init 関数で行なっています。この init 関数はGoでプログラムが起動されるときに一度だけ呼ばれる特殊な関数です。これにより、ミドルウェアの初期化を一箇所にまとめることができ、main関数をシンプルに保つことができます。
+
+なお、上記の例ではOAuth認証の具体的な実装や権限チェックの処理は省略しています。これらの処理は、使用するOAuthのサービスやアプリケーションの要件によって実装方法が異なるためです。
+
+****
