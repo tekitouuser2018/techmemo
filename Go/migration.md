@@ -1190,3 +1190,90 @@ func getAdmin(c *gin.Context) {
 なお、上記の例ではAuthRequiredやRoleRequiredの中で認証情報の検証やロールの確認の具体的な処理は省略されています。これらの処理は、使用する認証手段やアプリケーションの要件によって実装方法が異なるためです。たとえばJWTを使用する場合には、AuthRequiredでJWTトークンをデコードし検証し、RoleRequiredでデコードされたクレームからロールを取得して比較する、といった形になるでしょう。
 
 ****
+
+### セッション管理
+
+Spring Boot
+
+Spring Bootでは、セッション管理はSpring Sessionというライブラリで行うことができます。このライブラリを使うと、セッション情報をHTTPセッションだけでなく、分散システム間で共有することもできます。
+
+以下に、Spring Bootでのセッション管理の基本的なコード例を示します。この例では、Spring SessionとRedisを使用してセッション情報を管理しています。
+
+```Java
+// セッション情報を保持するクラス
+@SessionAttributes("user")
+public class SessionController {
+
+    @Autowired
+    private UserRepository userRepository;
+
+    // ログイン処理
+    @PostMapping("/login")
+    public String login(@RequestParam("username") String username, Model model) {
+        User user = userRepository.findByUsername(username);
+        if (user != null) {
+            model.addAttribute("user", user);
+            return "dashboard";
+        } else {
+            model.addAttribute("error", "Invalid username");
+            return "login";
+        }
+    }
+
+    // ログアウト処理
+    @PostMapping("/logout")
+    public String logout(SessionStatus session) {
+        session.setComplete();  // セッション情報を破棄
+        return "login";
+    }
+}
+```
+
+Go Gin
+
+Go言語でウェブアプリケーションを構築する際のフレームワークであるGinでは、gin-contrib/sessionsパッケージを使用してセッション管理を行います。
+
+以下に、Ginでのセッション管理の基本的なコード例を示します。
+
+```Java
+package main
+
+import (
+	"github.com/gin-contrib/sessions"
+	"github.com/gin-contrib/sessions/cookie"
+	"github.com/gin-gonic/gin"
+)
+
+func main() {
+	router := gin.Default()
+
+	// セッションストアを設定
+	store := cookie.NewStore([]byte("secret"))
+	router.Use(sessions.Sessions("mysession", store))
+
+	router.POST("/login", func(c *gin.Context) {
+		// ログインの処理を行い、ユーザ情報を取得
+		// user := ...
+
+		session := sessions.Default(c)
+		session.Set("user", user)
+		session.Save()
+	})
+
+	router.POST("/logout", func(c *gin.Context) {
+		session := sessions.Default(c)
+		session.Clear()
+		session.Save()
+	})
+
+	router.Run(":8080")
+}
+```
+
+上記のコードでは、gin-contrib/sessionsを使用してセッション管理を行っています。ログイン時には、ユーザ情報をセッションに保存し、ログアウト時にはセッション情報をクリアしています。
+
+なお、実際のログイン処理やユーザ情報の取得は、アプリケーションの具体的な要件に基づいて実装する必要があります。
+
+****
+
+
